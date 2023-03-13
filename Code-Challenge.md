@@ -26,9 +26,13 @@ final_df = subjects %>%
   mutate(mean_ham_score = mean(ham_score)) %>%
   slice_max(ham_date) %>%
   select(masterdemoid, ham_date, ham_score, mean_ham_score) %>%
+  rename(latest_ham_score = ham_score) %>%
   distinct()
 
 # Subjects with id 211253, 211669, 220244, 221183, 221220 had multiple visit time points on their latest visit date and the scores were the same. Only one latest value for each subject was kept.
+
+# export
+save(final_df, file = "output/final_df.RData")
 ```
 
 # Question 2 - Data Visualization
@@ -100,14 +104,14 @@ p_group = recruitment_data %>%
 
 
 # export
-ggsave(plot = p_total, width = 8, height = 6, dpi = 300, filename = "Sources_Total.png")
+ggsave(plot = p_total, width = 8, height = 6, dpi = 300, filename = "output/Sources_Total.png")
 ```
 
     ## Warning: The dot-dot notation (`..count..`) was deprecated in ggplot2 3.4.0.
     ## ℹ Please use `after_stat(count)` instead.
 
 ``` r
-ggsave(plot = p_age, width = 8, height = 6, dpi = 300, filename = "Sources_Age.png")
-ggsave(plot = p_gender, width = 8, height = 6, dpi = 300, filename = "Sources_Gender.png")
-ggsave(plot = p_group, width = 8, height = 6, dpi = 300, filename = "Sources_Group.png")
+ggsave(plot = p_age, width = 8, height = 6, dpi = 300, filename = "output/Sources_Age.png")
+ggsave(plot = p_gender, width = 8, height = 6, dpi = 300, filename = "output/Sources_Gender.png")
+ggsave(plot = p_group, width = 8, height = 6, dpi = 300, filename = "output/Sources_Group.png")
 ```
