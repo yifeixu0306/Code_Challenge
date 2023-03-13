@@ -33,10 +33,12 @@ final_df = subjects %>%
   mutate(mean_ham_score = mean(ham_score)) %>%
   slice_max(ham_date) %>%
   select(masterdemoid, ham_date, ham_score, mean_ham_score) %>%
+  rename(latest_ham_score = ham_score) %>%
   distinct()
 
 # Subjects with id 211253, 211669, 220244, 221183, 221220 had multiple visit time points on their latest visit date and the scores were the same. Only one latest value for each subject was kept.
 ```
+
 
 # Question 2 - Data Visualization
 
